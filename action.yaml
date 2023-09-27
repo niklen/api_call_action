@@ -1,0 +1,13 @@
+name: 'Azure auth api call'
+description: 'Make an http request to an authenticated API in azure '
+inputs:
+  url:  # id of input
+    description: 'Where to make the http call'
+    required: true
+    default: 'World'
+outputs:
+  access_token:
+    description: 'Microsoft Entra Id Access token for federated credentials'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'

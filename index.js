@@ -10,7 +10,7 @@ try {
     const clientId = core.getInput('client_id', { required: true });
     const scope = core.getInput('scope', { required: true })
     const tokenEndpoint = `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`
-
+    core.info(tokenEndpoint);
     core.getIDToken().then(token => {
         core.debug('Acquired Github Action Token')
         core.debug(`Token: ${token}`);

@@ -13,23 +13,23 @@ try {
 
     core.getIDToken().then(token => {
         core.debug('Acquired Github Action Token')
-        core.debug(token);
+        core.debug(`Token: ${token}`);
 
         axios.post(tokenEndpoint, {
+            scope: scope,
             client_id: clientId,
-            grant_type: 'client_credentials',
             client_assertion_type: 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
-            client_assertion: token,
-            scope: scope
+            grant_type: 'client_credentials',
+            client_assertion: token
         }, {
-            headers: { 'content-type': 'application/x-www-format-urlencoded' }
-        }).then(resp => {
-            core.info('Sucessfully acquired Microsoft Entra Id Access Token ')
-            core.setOutput('access_token', resp.data['access_token']);
+            headers: { 'content-type': 'application/x-www-form-urlencoded' }
+        }).then(response => {
+            core.info("Successfully acquired Azure AD access token!")
+            core.setOutput("access_token", response.data['access_token']);
+            core.exportVariable('ACCESS_TOKEN', response.data['access_token']);
             core.debug(parseJwt(response.data['access_token']))
-        }).catch(error => {
-            core.error(error.message)
-            core.debug('Test')
+        }).catch(({ response }) => {
+            core.error(response.data)
             core.setFailed(`Failed to Acquire Azure AD JWT: ${error.message}`)
         })
     }).catch(err => {

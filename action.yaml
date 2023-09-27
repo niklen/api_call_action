@@ -1,10 +1,14 @@
 name: 'Azure auth api call'
 description: 'Make an http request to an authenticated API in azure '
 inputs:
-  url:  # id of input
-    description: 'Where to make the http call'
+  tenant_id: 
+    description: 'Azure AD Tenant ID'
     required: true
-    default: 'World'
+    default: '00000000-0000-0000-0000-000000000000'
+  client_id: 
+    description: 'App Registration Client ID'
+    required: true
+    default: '00000000-0000-0000-0000-000000000000'
 outputs:
   access_token:
     description: 'Microsoft Entra Id Access token for federated credentials'

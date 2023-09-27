@@ -30,7 +30,7 @@ try {
             core.debug(parseJwt(response.data['access_token']))
         }).catch(({ response }) => {
             core.error(response.data)
-            core.setFailed(`Failed to Acquire Azure AD JWT: ${error.message}`)
+            core.setFailed(`Failed to Acquire Azure AD JWT: ${response.data.message}`)
         })
     }).catch(err => {
         core.setFailed(`Failed to acquire GitHub Action Token: ${err.message}`);

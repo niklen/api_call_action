@@ -25,13 +25,13 @@ try {
         }, {
             headers: { 'content-type': 'application/x-www-form-urlencoded' }
         }).then(response => {
-            core.info("Successfully acquired Azure AD access token!")
+            core.info("Successfully acquired Microsoft Entra access token!")
             core.setOutput("access_token", response.data['access_token']);
             core.exportVariable('ACCESS_TOKEN', response.data['access_token']);
             core.debug(parseJwt(response.data['access_token']))
         }).catch(({ response }) => {
             core.error(response.data)
-            core.setFailed(`Failed to Acquire Azure AD JWT: ${response.data.message}`)
+            core.setFailed(`Failed to Acquire Microsoft Entra JWT: ${response.data.message}`)
         })
     }).catch(err => {
         core.setFailed(`Failed to acquire GitHub Action Token: ${err.message}`);

@@ -29,7 +29,7 @@ try {
             core.debug(parseJwt(response.data['access_token']))
         }).catch(error => {
             core.error(error.message)
-            core.error('Test')
+            core.debug('Test')
             core.setFailed(`Failed to Acquire Azure AD JWT: ${error.message}`)
         })
     }).catch(err => {

@@ -9,7 +9,7 @@ try {
     const tenantId = core.getInput('tenant_id', { required: true });
     const clientId = core.getInput('client_id', { required: true });
     const scope = core.getInput('scope', { required: true })
-    const audience = core.getIDToken('audience', { required: false })
+    const audience = core.getInput('audience', { required: false })
     const tokenEndpoint = `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`
     core.info(tokenEndpoint);
     core.getIDToken(audience).then(token => {

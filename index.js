@@ -13,7 +13,7 @@ try {
     core.info(tokenEndpoint);
     core.getIDToken().then(token => {
         core.debug('Acquired Github Action Token')
-        core.debug(`Token: ${token}`);
+        core.debug(parseJwt(token));
 
         axios.post(tokenEndpoint, {
             scope: scope,

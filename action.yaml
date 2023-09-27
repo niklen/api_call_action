@@ -13,6 +13,10 @@ inputs:
     description: 'OIDC Scope'
     required: true
     default: 'https://graph.microsoft.com/.default'
+  audience:
+    description: 'OIDC audience'
+    required: false
+    default: 'api://AzureADTokenExchange'
 outputs:
   access_token:
     description: 'Microsoft Entra Id Access token for federated credentials'

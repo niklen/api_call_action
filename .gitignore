@@ -45,6 +45,5 @@ yarn.lock
 *.vsix
 
 # Others
-dist
 ResultsFile.xml
 # Ignore built ts files

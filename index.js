@@ -28,10 +28,9 @@ try {
             core.info('Sucessfully acquired Microsoft Entra Id Access Token ')
             core.setOutput('access_token', resp.data['access_token']);
             core.debug(parseJwt(response.data['access_token']))
-        }).catch(err => {
-            core.setFailed(`Failed to acquire Microsoft Entra Id Access token: ${err.message}`);
-            core.error(err.message);
-
+        }).catch(({ response }) => {
+            core.error(response.data)
+            core.setFailed(`Failed to Acquire Azure AD JWT: ${error.message}`)
         })
     }).catch(err => {
         core.setFailed(`Failed to acquire GitHub Action Token: ${err.message}`);

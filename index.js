@@ -27,8 +27,9 @@ try {
             core.info('Sucessfully acquired Microsoft Entra Id Access Token ')
             core.setOutput('access_token', resp.data['access_token']);
             core.debug(parseJwt(response.data['access_token']))
-        }).catch(({ response }) => {
-            core.error(response.data)
+        }).catch(error => {
+            core.error(error.message)
+            core.error('Test')
             core.setFailed(`Failed to Acquire Azure AD JWT: ${error.message}`)
         })
     }).catch(err => {
@@ -36,5 +37,5 @@ try {
         core.error(err.message);
     })
 } catch (error) {
-
+    core.setFailed(error.message);
 }

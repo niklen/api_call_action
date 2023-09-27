@@ -9,6 +9,10 @@ inputs:
     description: 'App Registration Client ID'
     required: true
     default: '00000000-0000-0000-0000-000000000000'
+  scope:
+    description: 'OIDC Scope'
+    required: true
+    default: 'https://graph.microsoft.com/.default'
 outputs:
   access_token:
     description: 'Microsoft Entra Id Access token for federated credentials'

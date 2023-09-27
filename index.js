@@ -8,17 +8,20 @@ function parseJwt(token) {
 try {
     const tenantId = core.getInput('tenant_id', { required: true });
     const clientId = core.getInput('client_id', { required: true });
+    const scope = core.getInput('scope', { required: true })
     const tokenEndpoint = `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`
 
     core.getIDToken().then(token => {
         core.debug('Acquired Github Action Token')
+        core
         core.debug(token);
 
         axios.post(tokenEndpoint, {
             client_id: clientId,
             grant_type: 'client_credentials',
             client_assertion_type: 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
-            client_assertion: token
+            client_assertion: token,
+            scope: scope
         }, {
             headers: { 'content-type': 'application/x-www-format-urlencoded' }
         }).then(resp => {

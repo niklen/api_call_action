@@ -13,7 +13,6 @@ try {
 
     core.getIDToken().then(token => {
         core.debug('Acquired Github Action Token')
-        core
         core.debug(token);
 
         axios.post(tokenEndpoint, {
